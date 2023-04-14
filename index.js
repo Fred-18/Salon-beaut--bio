@@ -10,7 +10,7 @@ import bodyParser from "body-parser";
 dotenv.config();
 
 // Connect to the DB
-(connectDB);
+connectDB();
 
 
 
