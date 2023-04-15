@@ -3,7 +3,7 @@ import categoryModel from "../models/categoryModel.js";
 // Get All Categories
 export const getCategories = async (req, res, next) => {
     const category = await categoryModel.find()
-    res.status(200).render("category/getCategories", {title: "CategoryList", category});
+    res.status(200).render("category/getCategories", {title: "Category",categories:category});
 };
 
 // Create CategoryModel||
@@ -20,12 +20,14 @@ export const postCategory = async (req, res, next) => {
     console.log(category);
     //   res.status(201).redirect("/categories");
     res.status(201).json({category});
+    
+    //res.redirect("/") // recharge la page ou dans une page de mon choix
 };
 
 //Delete category
 export const deleteCategoryById = async (req, res, next) => {
     // Send categoryName to the req.body
-    const categoryId = req.body._id;
+    const categoryId = req.params._id;
 
 
     // create new category with mongoose
