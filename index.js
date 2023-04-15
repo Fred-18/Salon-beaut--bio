@@ -5,6 +5,7 @@ import homepageRouter from "./routes/homepageRoutes.js";
 import categoryRouter from "./routes/categoryRoutes.js";
 import dotenv from "dotenv"
 import bodyParser from "body-parser";
+import productRoutes from "./routes/productRoutes.js";
 
 // Configure dotenv
 dotenv.config();
@@ -18,6 +19,8 @@ const __dirname = path.resolve();
 
 // Create express App
 const app = express();
+
+//read json 
 app.use(bodyParser.json());
 
 // Set views engine
@@ -31,6 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Use routers
 app.use(homepageRouter);
 app.use(categoryRouter);
+app.use(productRoutes);
 
 
 // Create server and Listenning
