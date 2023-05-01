@@ -1,7 +1,31 @@
-body{
-    background-color: beige;
+body {
+    background-color: grey;
 }
-h1{
-  text-align: center;
-  padding: 10px;
+
+h1  {
+    text-align: center;
+    padding: 10px;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30rem);
+}
+
+.card {
+    box-sizing: border-box;
+    display: flex;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 18rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    height: 70px;
 }
