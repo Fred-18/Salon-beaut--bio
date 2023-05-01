@@ -54,7 +54,7 @@ export const getProductByCategotyId = async (req, res, next) => {
     const ownedbyCategory = req.params.ownedbyCategory;
     const product = await productModel.find({ownedbyCategory})
     const category = await categoryModel.find();
-    res.render("pages/categoriesPages", {title: "kevin", product: product, categories: category});
+    res.render("pages/categoriesPages", {title: "Product by Category", product: product, categories: category});
     //res.status(201).redirect("/");
 }
 export const getProductById = async (req, res, next) => {
