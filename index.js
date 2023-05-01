@@ -6,6 +6,7 @@ import categoryRouter from "./routes/categoryRoutes.js";
 import dotenv from "dotenv"
 import bodyParser from "body-parser";
 import productRoutes from "./routes/productRoutes.js";
+import categoriesPagesRoutes from "./routes/categoriesPagesRoutes.js";
 
 // Configure dotenv
 dotenv.config();
@@ -30,11 +31,13 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Use routers
 app.use(homepageRouter);
 app.use(categoryRouter);
 app.use(productRoutes);
+app.use(categoriesPagesRoutes);
 
 
 // Create server and Listenning
