@@ -1,9 +1,10 @@
 import productModel from "../models/productModel.js";
+import categoryModel from "../models/categoryModel.js";
 
 // Get All Products
 export const getProducts = async (req, res, next) => {
     const product = await productModel.find()
-    res.status(200).render("product/getProducts", {title: "ProductsList", product: product});
+    res.status(200).render("pages/getProducts", {title: "ProductsList", product: product});
 };
 
 // Create productModel||
@@ -12,44 +13,53 @@ export const postProduct = async (req, res, next) => {
     const productName = req.body.productName;
     const productDescription = req.body.productDescription;
     const productPrice = req.body.productPrice;
-    const ownedbyCategory= req.body.ownedbyCategory;
+    const ownedbyCategory = req.body.ownedbyCategory;
 
     // create new product with mongoose
     const product = await productModel.create({
-        productName:productName, productDescription:productDescription, productPrice:productPrice,ownedbyCategory
+        productName, productDescription, productPrice, ownedbyCategory
     });
 
     console.log(product);
-    //   res.status(201).redirect("/product");
-    res.status(201).json({product});
+    res.status(201).redirect("/");
 };
 
 //Delete product
 export const deleteproductById = async (req, res, next) => {
     // Send productName to the req.body
-    const productId = req.body._id;
+    const _id = req.body._id
 
 
-    // create new product with mongoose
-    const product = await productModel.findByIdAndDelete({_id: productId});
+    // delete product with mongoose
+    const product = await productModel.findByIdAndDelete({_id});
 
-    //   res.status(201).redirect("/categories");
-    res.status(201).json({product});
+
+    res.status(201).redirect("/");
+    //res.status(201)({product});
 };
-
 //update product
 export const updateproductById = async (req, res, next) => {
     // Send categoryName to the req.body
     const _id = req.body._id;
     const productName = req.body.productName;
     const productDescription = req.body.productDescription;
+    const productPrice = req.body.productPrice
+    // update product with mongoose
+    const product = await productModel.findByIdAndUpdate(_id, {productName, productDescription, productPrice});
 
-
-    // create new product with mongoose
-    const product = await productModel.findByIdAndUpdate(_id, {productName, productDescription});
-
-    //   res.status(201).redirect("/product");
-    res.status(201).json({product});
+    res.status(201).redirect("/");
+    //res.status(201).json({product});
 };
+export const getProductByCategotyId = async (req, res, next) => {
+    const ownedbyCategory = req.params.ownedbyCategory;
+    const product = await productModel.find({ownedbyCategory})
+    const category = await categoryModel.find();
+    res.render("pages/categoriesPages", {title: "kevin", product: product, categories: category});
+    //res.status(201).redirect("/");
+}
+export const getProductById = async (req, res, next) => {
+    const _id = req.body._id;
+    const product = await productModel.findById(_id)
 
-
+    res.status(200).json({product});
+}
