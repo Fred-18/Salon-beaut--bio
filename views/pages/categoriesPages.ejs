@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../head'); %>
+</head>
+<button><a class="nav-link" href="/products">Gestions des produits</a></button>
+<button><a class="nav-link" href="/categories">Retour au categories</a></button>
+<body>
+<%= title %>
+<% product.forEach((prod)=> { %>
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h4 class="card-title"><%= prod.productName %></h4>
+                    <p class="card-text"><strong>Prix du produit</strong> : <%= prod.productPrice %> euros</p>
+                    <p class="card-text"><strong>id du produit</strong> : <%= prod._id %></p>
+                    <p class="card-text"><strong>Description</strong> : <%= prod.productDescription %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }) %>
+</body>
+</html>
+

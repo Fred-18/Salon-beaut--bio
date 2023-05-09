@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../head'); %>
+</head>
+
+<header><%- include('../header'); %></header>
+<body>
+<h1>Categories</h1>
+<div class="wrapper">
+    <% categories.forEach((category)=> { %>
+        <div class="row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= category.categoryName %></h5>
+                        <p class="card-text"><%= category.categoryDescription %></p>
+                        <a href="/categorie-pages/<%= category._id %>" class="btn btn-primary"><%= category.categoryName %></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+</body>
+</html>
